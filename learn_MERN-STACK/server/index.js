@@ -7,11 +7,12 @@ const router = express.Router();
 const db = require('./DbOperations');
 const config = require('./DbConfig');
 
+const PORT = process.env.PORT || 3001;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/api', router);
-const PORT = process.env.PORT || 3001;
 
 router.use((request, response, next) => {
     console.log("==========================<< MIDDLEWARE >>==========================");

@@ -5,7 +5,7 @@ function testConnection() {
     try {
         var conn = sql.connect(config.DbConfig).then(function err(err) {
             if (conn === false) {
-                console.log('failed to connect, caused by ' + error);
+                console.log('failed to connect, caused by ' + err);
             } else {
                 console.log('connection success to database server '+config.dbName);
             };
