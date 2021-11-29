@@ -72,6 +72,7 @@ function InsertUser() {
                                     <Button style={{width: '20vh'}} type='submit' variant='success'>Add User</Button>
                                 </Col>
                                 <Col>
+                                <button type='reset'>Reset</button>
                                     <Button style={{width: '20vh'}} type='reset' variant='secondary'>Clear</Button>
                                 </Col>
                             </Row>

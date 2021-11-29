@@ -63,6 +63,20 @@ router.route('/insert-user').post((request, response) => {
     };
 });
 
+router.route('/get-molds').get((request, response) => {
+    db.getAllMoldRequest().then(result => {
+        response.json(result);
+        console.log(result);
+    });
+});
+
+router.route('/insert-mold').get((request, response) => {
+    db.insertMoldRequest().then(result => {
+        response.json(result);
+        console.log(result);
+    })
+});
+
 app.listen(PORT, (request, response) => {
     console.log("This server API run at port: " + PORT);
 });

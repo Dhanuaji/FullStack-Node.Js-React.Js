@@ -52,9 +52,50 @@ async function insertUser(username, password, first_name, last_name, role){
     };
 };
 
+//MOLD OPERATIONS
+//Get All Molds
+async function getAllMoldRequest(params) {
+    try {
+        let pool = await sql.connect(config.DbConfig);
+        let getAllMoldRequest = await pool.request().query("SELECT * FROM [FMLX_IME].[dbo].[ime.tbl_mold.requests]");
+        return getAllMoldRequest.recordsets;
+    } catch (error) {
+        console.log(error);
+    };
+}
+
+//Insert Mold
+async function insertMoldRequest(req, res) {
+    try {
+        if (req.body.id != null, req.body.form_number != null, req.body.document_number != null, req.body.request_date != null, req.body.design_type != null, req.body.design_kind != null, req.body.part_name != null) {
+            const pool = await sql.connect(config.DbConfig);
+            const result = await pool.request()
+                .input('id', sql.Int, id)
+                .input('form_number', sql.VarChar, form_number)
+                .input('document_number', sql.VarChar, document_number)
+                .input('request_date', sql.Date, request_date)
+                .input('design_type', sql.VarChar, design_type)
+                .input('design_kind', sql.VarChar, design_kind)
+                .input('part_name', sql.VarChar, part_name)
+                .input('part_number', sql.Int, part_number)
+                .input('data_location', sql.VarChar, data_location)
+                .input('estimate_finish_date', sql.Date, estimate_finish_date)
+                .input('author_name', sql.Int, author_name)
+                .query("INSERT INTO [DEVSERVER_GUDANG].[dbo].[ime.tbl_mold.request] (id, form_number, document_number, request_date, design_type, design_kind, part_name, part_number, data_location, estimate_finish_date, author_name) VALUES" +
+                    "(@id, @form_number, @document_number, @request_date, @design_type, @design_kind, @part_name, @part_number, @data_location, @estimate_finish_date, @author_name)")
+            res.json(result);
+        }
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 module.exports = {
     testConnection: testConnection,
     getUsers: getUsers,
     getUserById: getUserById,
-    insertUser: insertUser
+    insertUser: insertUser,
+    getAllMoldRequest: getAllMoldRequest,
+    insertMoldRequest: insertMoldRequest
 }

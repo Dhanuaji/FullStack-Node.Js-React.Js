@@ -2,7 +2,7 @@ var DbConfig = {
     server: 'DESKTOP-73E4RM8\\MSSQLSERVER',
     user: 'danuprat',
     password: 'slipkinot123',
-    database: 'DEVSERVER-GUDANG',
+    database: 'FMLX_IME',
     port: 1433,
     encrypt: false
 };
